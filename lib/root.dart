@@ -33,7 +33,11 @@ class _RootState extends State<Root> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(controller: controller, children: screens),
+      body: PageView(
+        controller: controller,
+        children: screens,
+        physics: NeverScrollableScrollPhysics(),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: AppColors.primaryColor,
         type: BottomNavigationBarType.fixed,
