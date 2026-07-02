@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_order_app/core/constants/app_colors.dart';
 import 'package:food_order_app/shared/custame_text.dart';
 import 'package:gap/gap.dart';
 
@@ -26,7 +28,13 @@ class CartItem extends StatelessWidget {
             Gap(10),
             CustameText(text: text, weight: FontWeight.bold),
             CustameText(text: desc),
-            CustameText(text: "⭐$rate"),
+            Row(
+              children: [
+                CustameText(text: "⭐$rate"),
+                Spacer(),
+                Icon(CupertinoIcons.heart_fill, color: AppColors.primaryColor),
+              ],
+            ),
           ],
         ),
       ),

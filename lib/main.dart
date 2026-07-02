@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_order_app/feutuar/home/screen/home_screen.dart';
+import 'package:food_order_app/root.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Food_Order_Hunger",
-      home: HomeScreen(),
+      home: Root(),
     );
   }
 }

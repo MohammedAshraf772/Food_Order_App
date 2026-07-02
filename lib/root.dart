@@ -51,10 +51,22 @@ class _RootState extends State<Root> {
           controller.jumpToPage(currentScreen);
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.home)),
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.cart)),
-          BottomNavigationBarItem(icon: Icon(Icons.local_restaurant)),
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.profile_circled)),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.cart),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_restaurant),
+            label: 'Orders',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.profile_circled),
+            label: 'Profile',
+          ),
         ],
       ),
     );

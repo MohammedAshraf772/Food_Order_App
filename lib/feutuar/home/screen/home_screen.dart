@@ -4,6 +4,7 @@ import 'package:food_order_app/feutuar/home/widget/cart_item.dart';
 import 'package:food_order_app/feutuar/home/widget/category_home.dart';
 import 'package:food_order_app/feutuar/home/widget/search_field.dart';
 import 'package:food_order_app/feutuar/home/widget/user_header.dart';
+import 'package:food_order_app/feutuar/product/screen/product_screen.dart';
 import 'package:gap/gap.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -49,11 +50,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   context,
                   index,
                 ) {
-                  return CartItem(
-                    image: "assets/test/image 6.png",
-                    text: "text",
-                    desc: "desc",
-                    rate: "rate",
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (c) {
+                            return ProductScreen();
+                          },
+                        ),
+                      );
+                    },
+                    child: CartItem(
+                      image: "assets/test/image 6.png",
+                      text: "text",
+                      desc: "desc",
+                      rate: "rate",
+                    ),
                   );
                 }),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

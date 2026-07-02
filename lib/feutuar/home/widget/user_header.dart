@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -30,7 +31,11 @@ class UserHeader extends StatelessWidget {
           ],
         ),
         Spacer(),
-        CircleAvatar(radius: 40),
+        CircleAvatar(
+          radius: 28,
+          child: Icon(CupertinoIcons.profile_circled, color: Colors.white),
+          backgroundColor: AppColors.primaryColor,
+        ),
       ],
     );
   }

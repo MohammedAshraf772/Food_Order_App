@@ -4,8 +4,12 @@ import 'package:food_order_app/core/constants/app_colors.dart';
 import 'package:food_order_app/shared/custame_text.dart';
 
 class CategoryHome extends StatefulWidget {
-  CategoryHome({super.key, this.selectedIndex, required this.category});
-  final selectedIndex;
+  CategoryHome({
+    super.key,
+    required this.selectedIndex,
+    required this.category,
+  });
+  final int selectedIndex;
   final List category;
   @override
   State<CategoryHome> createState() => _CategoryHomeState();
@@ -13,9 +17,10 @@ class CategoryHome extends StatefulWidget {
 
 class _CategoryHomeState extends State<CategoryHome> {
   late int selectedIndex;
-  void initStat() {
-    selectedIndex = widget.selectedIndex;
+  @override
+  void initState() {
     super.initState();
+    selectedIndex = widget.selectedIndex;
   }
 
   @override
