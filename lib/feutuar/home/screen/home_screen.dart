@@ -4,7 +4,7 @@ import 'package:food_order_app/feutuar/home/widget/cart_item.dart';
 import 'package:food_order_app/feutuar/home/widget/category_home.dart';
 import 'package:food_order_app/feutuar/home/widget/search_field.dart';
 import 'package:food_order_app/feutuar/home/widget/user_header.dart';
-import 'package:food_order_app/feutuar/product/screen/product_screen.dart';
+import 'package:food_order_app/feutuar/product/screen/product_details_screen.dart';
 import 'package:gap/gap.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (c) {
-                            return ProductScreen();
+                            return ProductDetailsScreen();
                           },
                         ),
                       );

@@ -12,25 +12,30 @@ class SpicySlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset("assets/test/pngwing 12.svg", height: 200),
+        Image.asset("assets/test/pngwing 12.png", height: 200),
         Spacer(),
-        CustameText(
-          text: "Customize Your Burger\n To Your Testes.\nUltimate Experince",
-        ),
-        Slider(
-          min: 0,
-          max: 1,
-          value: value,
-          onChanged: onChanged,
-          inactiveColor: Colors.grey.shade300,
-          activeColor: AppColors.primaryColor,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Column(
           children: [
-            CustameText(text: "🥶"),
-            Gap(100),
-            CustameText(text: "🌶️"),
+            CustameText(
+              text:
+                  "Customize Your Burger\n To Your Testes.\nUltimate Experince",
+            ),
+            Slider(
+              min: 0,
+              max: 1,
+              value: value,
+              onChanged: onChanged,
+              inactiveColor: Colors.grey.shade300,
+              activeColor: AppColors.primaryColor,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustameText(text: "🥶"),
+                Gap(100),
+                CustameText(text: "🌶️"),
+              ],
+            ),
           ],
         ),
       ],
