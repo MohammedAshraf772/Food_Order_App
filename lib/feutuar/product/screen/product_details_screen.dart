@@ -90,6 +90,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   CustameButton(text: "Add To Cart", ontap: () {}),
                 ],
               ),
+              Gap(20),
             ],
           ),
         ),

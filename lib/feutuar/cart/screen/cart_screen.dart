@@ -1,51 +1,68 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_order_app/core/constants/app_colors.dart';
+import 'package:food_order_app/feutuar/cart/widget/card_item.dart';
+import 'package:food_order_app/shared/custame_button.dart';
 import 'package:food_order_app/shared/custame_text.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
   @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  int number = 1;
+  void onAdd() {
+    setState(() {
+      if (number > 1) {
+        number++;
+      }
+    });
+  }
+
+  void onMin() {
+    setState(() {
+      number--;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.white,
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        child: ListView.builder(
+          padding: EdgeInsets.only(bottom: 120, top: 100),
+          itemCount: 4,
+          itemBuilder: (context, index) {
+            return CardItem(
+              image: "assets/test/image 6.png",
+              text: "Humburger",
+              desc: "Veggie Burger",
+              num: number,
+              onAdd: onAdd,
+              onMin: onMin,
+            );
+          },
+        ),
+      ),
+      bottomSheet: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Card(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset("assets/test/image 6.png", width: 100),
-                      CustameText(text: "Humburger", weight: FontWeight.bold),
-                      CustameText(text: "Veggie Burger"),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          GestureDetector(
-                            child: CircleAvatar(
-                              backgroundColor: AppColors.primaryColor,
-                              child: Icon(
-                                CupertinoIcons.add,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CustameText(text: "Total", size: 30),
+              CustameText(text: "\$18.9", size: 30),
+            ],
           ),
+          CustameButton(text: "Checkout", ontap: () {}),
         ],
       ),
     );
