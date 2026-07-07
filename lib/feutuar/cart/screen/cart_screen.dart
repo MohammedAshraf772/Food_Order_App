@@ -12,18 +12,22 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  int number = 1;
-  void onAdd() {
+  int itemCount = 20;
+  late List<int> quantities;
+  initState() {
+    quantities = List.generate(itemCount, (_) => 1);
+    super.initState();
+  }
+
+  void onAdd(index) {
     setState(() {
-      if (number > 1) {
-        number++;
-      }
+      quantities[index]++;
     });
   }
 
-  void onMin() {
+  void onMin(index) {
     setState(() {
-      number--;
+      if (quantities[index] > 1) quantities[index]--;
     });
   }
 
@@ -39,15 +43,15 @@ class _CartScreenState extends State<CartScreen> {
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: ListView.builder(
           padding: EdgeInsets.only(bottom: 120, top: 100),
-          itemCount: 4,
+          itemCount: itemCount,
           itemBuilder: (context, index) {
             return CardItem(
               image: "assets/test/image 6.png",
               text: "Humburger",
               desc: "Veggie Burger",
-              num: number,
-              onAdd: onAdd,
-              onMin: onMin,
+              num: quantities[index],
+              onAdd: () => onAdd(index),
+              onMin: () => onMin(index),
             );
           },
         ),

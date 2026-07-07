@@ -3,7 +3,15 @@ import 'package:food_order_app/core/constants/app_colors.dart';
 import 'package:food_order_app/shared/custame_text.dart';
 
 class CustameButton extends StatelessWidget {
-  const CustameButton({super.key, required this.text, this.ontap});
+  const CustameButton({
+    super.key,
+    required this.text,
+    this.ontap,
+    this.width,
+    this.color,
+  });
+  final Color? color;
+  final double? width;
   final String text;
   final Function()? ontap;
 
@@ -12,12 +20,13 @@ class CustameButton extends StatelessWidget {
     return GestureDetector(
       onTap: ontap,
       child: Container(
+        width: width,
         padding: EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 15),
         decoration: BoxDecoration(
-          color: AppColors.primaryColor,
+          color: color ?? AppColors.primaryColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: CustameText(text: text),
+        child: Center(child: CustameText(text: text)),
       ),
     );
   }
