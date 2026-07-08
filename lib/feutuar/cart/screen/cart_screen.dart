@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_order_app/feutuar/cart/widget/card_item.dart';
+import 'package:food_order_app/feutuar/checkout/screen/checkout_screen.dart';
 import 'package:food_order_app/shared/custame_button.dart';
 import 'package:food_order_app/shared/custame_text.dart';
 
@@ -34,6 +35,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 0,
         scrolledUnderElevation: 0,
@@ -42,7 +44,7 @@ class _CartScreenState extends State<CartScreen> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: ListView.builder(
-          padding: EdgeInsets.only(bottom: 120, top: 100),
+          padding: EdgeInsets.only(bottom: 120, top: 20),
           itemCount: itemCount,
           itemBuilder: (context, index) {
             return CardItem(
@@ -56,18 +58,69 @@ class _CartScreenState extends State<CartScreen> {
           },
         ),
       ),
-      bottomSheet: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+      bottomSheet: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+        child: SafeArea(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustameText(text: "Total", size: 30),
-              CustameText(text: "\$18.9", size: 30),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Total",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "\$",
+                        style: TextStyle(
+                          color: Color(0xFF0A472E),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      CustameText(text: "99.19", size: 28),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                width: 180,
+                height: 55,
+                child: CustameButton(
+                  text: "Checkout",
+                  ontap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) {
+                          return CheckoutScreen();
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
-          CustameButton(text: "Checkout", ontap: () {}),
-        ],
+        ),
       ),
     );
   }
