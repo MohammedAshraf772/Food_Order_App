@@ -34,6 +34,7 @@ flutter:
     - assets/logo/
     - assets/splash/
     - assets/test/
+    - assets/test/dollar.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
