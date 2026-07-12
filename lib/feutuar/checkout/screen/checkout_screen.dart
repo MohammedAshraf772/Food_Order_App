@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_order_app/feutuar/checkout/widget/order_details_widget.dart';
+import 'package:food_order_app/feutuar/checkout/widget/succes_dailog.dart';
 import 'package:food_order_app/shared/custame_button.dart';
 import 'package:food_order_app/shared/custame_text.dart';
 import 'package:gap/gap.dart';
@@ -132,7 +134,26 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   CustameText(text: "\$18.9", size: 30),
                 ],
               ),
-              CustameButton(text: "Add To Cart", ontap: () {}),
+              CustameButton(
+                text: "Pay Now",
+                ontap: () {
+                  showDialog(
+                    context: context,
+                    builder: (builder) {
+                      return Dialog(
+                        backgroundColor: Colors.transparent,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 180,
+                          ),
+                          child: SuccesDailog(),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
             ],
           ),
         ),

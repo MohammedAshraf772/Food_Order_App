@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_order_app/root.dart';
+import 'package:food_order_app/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Food_Order_Hunger",
-      home: Root(),
+      theme: ThemeData(),
+      home: SplashScreen(),
     );
   }
 }
