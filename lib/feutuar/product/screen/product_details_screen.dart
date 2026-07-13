@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_order_app/core/constants/app_colors.dart';
 import 'package:food_order_app/feutuar/product/widget/spicy_slider.dart';
 import 'package:food_order_app/feutuar/product/widget/topping_card.dart';
 import 'package:food_order_app/shared/custame_button.dart';
