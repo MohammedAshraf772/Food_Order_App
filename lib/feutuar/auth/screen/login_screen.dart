@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_order_app/core/constants/app_colors.dart';
+import 'package:food_order_app/core/network/api_error.dart';
+import 'package:food_order_app/feutuar/auth/data/auth_repo.dart';
 import 'package:food_order_app/feutuar/auth/widget/custam_button.dart';
+import 'package:food_order_app/root.dart';
 import 'package:food_order_app/shared/custame_text.dart';
 import 'package:food_order_app/shared/custame_textfield.dart';
 import 'package:gap/gap.dart';
@@ -15,11 +18,49 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  AuthRepo authRepo = AuthRepo();
+
+  Future<void> login() async {
+    if (!formKey.currentState!.validate()) return;
+
+    try {
+      final user = await authRepo.login(
+        emailController.text.trim(),
+        passController.text.trim(),
+      );
+
+      if (user != null && mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (c) => Root()),
+        );
+      }
+    } catch (e) {
+      String errorMsg = 'unhandled error in login';
+      if (e is ApiError) {
+        errorMsg = e.massege;
+      }
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(errorMsg)));
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passController = TextEditingController();
-    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -28,7 +69,6 @@ class _LoginScreenState extends State<LoginScreen> {
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
-
               child: Form(
                 key: formKey,
                 child: Column(
@@ -52,9 +92,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Gap(70),
                     TextFormField(
+                      controller: emailController,
                       cursorHeight: 20,
                       cursorColor: AppColors.primaryColor,
-                      validator: (v) {},
+                      validator: (v) {
+                        if (v == null || v.isEmpty) {
+                          return 'Please enter your email';
+                        }
+                        return null;
+                      },
                       obscureText: false,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
@@ -72,16 +118,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustameTextfield(
                       hint: "password",
                       ispassword: true,
-                      controller: emailController,
+                      controller: passController,
                     ),
                     Gap(50),
-                    CustamButton(
-                      text: "Login  ",
-                      onTap: () {
-                        if (formKey.currentState!.validate())
-                          print(" success Login");
-                      },
-                    ),
+                    CustamButton(text: "Login  ", onTap: login),
                   ],
                 ),
               ),

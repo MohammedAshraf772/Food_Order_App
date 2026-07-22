@@ -5,11 +5,17 @@ class ApiExceptions {
   static ApiError handleError(DioError error) {
     switch (error.type) {
       case DioErrorType.connectionTimeout:
-        return ApiError(massege: "Bad connection");
-      case DioErrorType.badResponse:
-        return ApiError(massege: error.toString());
+        return ApiError(
+          massege: "Connection timeout,please check your internet connection",
+        );
+      case DioErrorType.sendTimeout:
+        return ApiError(massege: "Request timeout.please try again");
+      case DioErrorType.receiveTimeout:
+        return ApiError(massege: "Request timeout.please try again");
       default:
-        return ApiError(massege: "someThing went wrong");
+        return ApiError(
+          massege: "An unexpected error occurred, please try again",
+        );
     }
   }
 }

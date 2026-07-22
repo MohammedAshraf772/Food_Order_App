@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_order_app/core/constants/app_colors.dart';
-import 'package:food_order_app/root.dart';
+import 'package:food_order_app/feutuar/auth/screen/login_screen.dart';
 import 'package:gap/gap.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
         context,
         MaterialPageRoute(
           builder: (c) {
-            return Root();
+            return LoginScreen();
           },
         ),
       );
@@ -31,16 +31,25 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Gap(280),
-            SvgPicture.asset("assets/logo/Hungry_.svg"),
-            Spacer(),
-            Image.asset('assets/splash/splash.png'),
-          ],
-        ),
+      body: Stack(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Gap(280),
+                SvgPicture.asset("assets/logo/Hungry_.svg"),
+                Spacer(),
+                Expanded(
+                  child: Image.asset(
+                    'assets/splash/splash.png',
+                    width: double.infinity,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
